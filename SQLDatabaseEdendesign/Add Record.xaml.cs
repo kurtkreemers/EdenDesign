@@ -22,14 +22,11 @@ namespace SQLDatabaseEdendesign
         DataTable sqlTable;      
         public string SelectedDatabase { get; set; }
         List<string> columnsList = new List<string>();
-        public Add_Record(string selectedDatabase)
+        public Add_Record(List<string> ColumnNames)
         {
             InitializeComponent();
-            this.SelectedDatabase = selectedDatabase;
-            sqlTable = ConnectSQL.GetAllColumns(selectedDatabase);
             int i = 0;
-            TextBox tb;
-           
+            TextBox tb;         
             foreach (DataColumn columnSQL in sqlTable.Columns)
             {
                 columnsList.Add(columnSQL.ToString()); 

@@ -15,21 +15,10 @@ namespace SQLDatabaseEdendesign
         static SqlCommand cmd;
         static SqlConnection sqlConn =  new SqlConnection (SQLDatabaseEdendesign.Properties.Settings.Default.ConnectionString);
 
-        public static DataTable GetAllColumns(string selectedDatabase)
-       {      
-            string query = "SELECT * FROM " + selectedDatabase;           
-            sqlConn.Open();
-            cmd = new SqlCommand(query, sqlConn);
-            SqlDataReader queryCommandReader = cmd.ExecuteReader();
-            DataTable dataTable = new DataTable();
-            dataTable.Load(queryCommandReader);
-            sqlConn.Close();
-            return dataTable;
-        }
         
-        public static DataTable GetData(string selectedDatabase, string searchInstruction)
+        public static DataTable GetData(string selectedTable, string searchInstruction)
         {
-            string query = "SELECT * FROM " + selectedDatabase + searchInstruction;
+            string query = "SELECT * FROM " + selectedTable + searchInstruction;
             sqlConn.Open();
             cmd = new SqlCommand(query, sqlConn);
             sda = new SqlDataAdapter(cmd);
@@ -38,10 +27,10 @@ namespace SQLDatabaseEdendesign
             sqlConn.Close();
             return dt;
         }
-        public static DataSet BindGrid(string selectedDatabase)
+        public static DataSet BindGrid(string selectedTable)
         {
             sqlConn.Open();
-            SqlDataAdapter _Adapter = new SqlDataAdapter("Select * from " + selectedDatabase, sqlConn);
+            SqlDataAdapter _Adapter = new SqlDataAdapter("Select * from " + selectedTable, sqlConn);
             DataSet _Bind = new DataSet();
             _Adapter.Fill(_Bind, "MyDataBinding");
             sqlConn.Close();

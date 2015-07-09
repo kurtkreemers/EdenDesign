@@ -32,7 +32,8 @@ namespace SQLDatabaseEdendesign
                 DatabaseSelect.Items.Add(name);
             }
         }
-
+        DataTable dt;
+        List<string> columnNames = new List<string>();
         private void DatabaseSelect_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ColumnsComboBox.Items.Clear();
@@ -41,17 +42,20 @@ namespace SQLDatabaseEdendesign
             SQLDataGrid.ItemsSource = null;
             SqlRecordsCount.Content = null;
             string selectedDataBase = DatabaseSelect.SelectedItem.ToString();
-            DataTable sqlTable = ConnectSQL.GetAllColumns(selectedDataBase);
+            dt = ConnectSQL.GetData(selectedDataBase,"");
 
-            foreach (DataColumn columnSQL in sqlTable.Columns)
+            foreach (DataColumn columnSQL in dt.Columns)
             {
+                string columnName = columnSQL.ToString();
                 if (!columnSQL.ToString().ToUpper().Contains("USER") && !columnSQL.ToString().ToUpper().Contains("VOL"))
-                ColumnsComboBox.Items.Add(columnSQL.ToString()); 
-                
-                
+                {
+                    ColumnsComboBox.Items.Add(columnName);
+                    columnNames.Add(columnName);
+                }
             }
+            SQLDataGrid.ItemsSource = dt.DefaultView;
         }
-        DataTable dt;
+        
         private void Search_Click(object sender, RoutedEventArgs e)
         {
 
@@ -122,6 +126,14 @@ namespace SQLDatabaseEdendesign
 
             DataSet dataset = ConnectSQL.BindGrid(DatabaseSelect.SelectedItem.ToString());
             SQLDataGrid.DataContext = dataset;
+        }
+
+        private void SQLDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+  
+            var row = (DataRowView)SQLDataGrid.SelectedValue;
+            int id = (int)row.Row.ItemArray[0];
+
         }       
 
     }

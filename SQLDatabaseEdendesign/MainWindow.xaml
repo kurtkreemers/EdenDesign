@@ -15,8 +15,7 @@
               <Button Name="Add_Record" Margin="50,0" Width="75" Content="Add Record" Click="Add_Record_Click"></Button>
                 <Button Name="Update" Margin="50,0" Width="50" Content="Update" Click="Update_Click"></Button>
             </StackPanel>
-        <DataGrid  Name="SQLDataGrid" ItemsSource="{Binding Path=MyDataBinding}" Height="500"  CanUserSortColumns="False" Margin="10" AutoGenerateColumns="True" AutoGeneratingColumn="SQLDataGrid_AutoGeneratingColumn">
-        </DataGrid>          
+            <DataGrid  x:Name="SQLDataGrid" ItemsSource="{Binding MyDataBinding}" Height="500"  CanUserSortColumns="False" Margin="10" AutoGenerateColumns="True" AutoGeneratingColumn="SQLDataGrid_AutoGeneratingColumn" MouseDoubleClick="SQLDataGrid_MouseDoubleClick" />
         </StackPanel>      
         <StatusBar Name="SqlStatusBar" Height="25" >
             <StatusBarItem Name="SqlRecordsCount">               
