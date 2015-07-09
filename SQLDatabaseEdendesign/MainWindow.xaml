@@ -1,0 +1,26 @@
+﻿<Window x:Class="SQLDatabaseEdendesign.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="EdenDesign Database" Height="750" Width="1000">
+    <DockPanel>
+    <StackPanel DockPanel.Dock="Top" >
+        <Label HorizontalAlignment="Center">Select Database :</Label>
+        <ComboBox Name="DatabaseSelect" Width="250" Height="25" SelectionChanged="DatabaseSelect_SelectionChanged"></ComboBox>
+        <Label HorizontalAlignment="Center">Select Column :</Label>
+        <ComboBox Name="ColumnsComboBox" Width="250" Height="25"></ComboBox>
+        <Label>Searchcontent :</Label> 
+        <StackPanel   Orientation="Horizontal">
+            <TextBox Name="SearchBox" Width="250" Height="25"></TextBox>
+            <Button Name="Search" Margin="50,0" Width="50" Content="Search" Click="Search_Click"></Button>
+              <Button Name="Add_Record" Margin="50,0" Width="75" Content="Add Record" Click="Add_Record_Click"></Button>
+                <Button Name="Update" Margin="50,0" Width="50" Content="Update" Click="Update_Click"></Button>
+            </StackPanel>
+        <DataGrid  Name="SQLDataGrid" ItemsSource="{Binding Path=MyDataBinding}" Height="500"  CanUserSortColumns="False" Margin="10" AutoGenerateColumns="True" AutoGeneratingColumn="SQLDataGrid_AutoGeneratingColumn">
+        </DataGrid>          
+        </StackPanel>      
+        <StatusBar Name="SqlStatusBar" Height="25" >
+            <StatusBarItem Name="SqlRecordsCount">               
+            </StatusBarItem>
+        </StatusBar>        
+    </DockPanel>
+</Window>

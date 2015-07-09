@@ -1,0 +1,9 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="SQLDatabaseEdendesign.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="ConnectionString" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Data Source=.\SQLExpress;AttachDbFilename=C:\KurtKreemers\SQL Database test\EdenDesign.mdf;Database=EdenDesign;Trusted_Connection=Yes</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
